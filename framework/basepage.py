@@ -10,6 +10,7 @@ from framework.logger import Logger
 
 logger = Logger(logger='BasePage').get_log()
 
+
 class BasePage(object):
 
     def __init__(self, driver):
@@ -39,7 +40,7 @@ class BasePage(object):
 
     def wait(self, loc, seconds):
         try:
-            WebDriverWait(self.driver, seconds).until(lambda driver:driver.find_element(*loc))
+            WebDriverWait(self.driver, seconds).until(lambda driver: driver.find_element(*loc))
             logger.info('wait for {} seconds'.format(seconds))
         except NameError as e:
             logger.error('Failed to load the element with {}'.format(e))
