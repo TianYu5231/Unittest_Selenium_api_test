@@ -4,7 +4,7 @@
 # @File: open_api.py
 # @Date: 2023/4/4 16:52
 # @SoftWare: PyCharm
-import requests
+from framework.request import request_get, request_post
 
 
 class OpenApi(object):
@@ -21,7 +21,7 @@ class OpenApi(object):
         :return:
         """
         url = self.do_main + '/getImages'
-        result = requests.get(url=url, params={'type': i_type, 'page': page, 'size': size})
+        result = request_get(url=url, params={'type': i_type, 'page': page, 'size': size})
         return result
 
     def get_video(self, page=0, size=10):
@@ -32,7 +32,7 @@ class OpenApi(object):
         :return:
         """
         url = self.do_main + '/getHaoKanVideo'
-        result = requests.get(url=url, params={'page': page, 'size': size})
+        result = request_get(url=url, params={'page': page, 'size': size})
         return result
 
     def get_sentences(self):
@@ -41,7 +41,7 @@ class OpenApi(object):
         :return:
         """
         url = self.do_main + '/sentences'
-        result = requests.get(url=url)
+        result = request_get(url=url)
         return result
 
     def login(self, account, password):
@@ -52,7 +52,7 @@ class OpenApi(object):
         :return:
         """
         url = self.do_main + '/login'
-        result = requests.put(url=url, json={'account': account, 'password': password})
+        result = request_get(url=url, json={'account': account, 'password': password})
         return result
 
     def register(self, account, password, code):
@@ -64,7 +64,7 @@ class OpenApi(object):
         :return:
         """
         url = self.do_main + '/register'
-        result = requests.put(url=url, json={'account': account, 'code': code, 'password': password})
+        result = request_post(url=url, json={'account': account, 'code': code, 'password': password})
         return result
 
 

@@ -8,10 +8,10 @@ import os.path
 import time
 
 from config.HTMLTestRunner import HTMLTestRunner
-from framework.logger import Logger
+from framework.logger import log
 
-logger = Logger('common').get_log()
 current_path = os.path.dirname(os.getcwd())
+base_dir = current_path[:current_path.find('Unittest_Selenium_api_test') + len('Unittest_Selenium_api_test')]
 
 
 class Common(object):
@@ -23,9 +23,9 @@ class Common(object):
         :param title:  报告title
         :return:
         """
-        r_path = os.path.join(current_path, 'reports')
+        r_path = os.path.join(base_dir, 'reports')
         r_file = os.path.join(r_path, '{}.html'.format(time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())))
-        with open(r_file, 'wb+', encoding='utf-8') as f:
+        with open(r_file, 'wb+') as f:
             runner = HTMLTestRunner(stream=f, title=title)
             runner.run(suit)
-        logger.info(f'生成测试报告：{os.path.split(r_file)[-1]}')
+        log.info(f'生成测试报告：{os.path.split(r_file)[-1]}')

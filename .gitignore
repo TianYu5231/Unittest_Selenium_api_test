@@ -130,3 +130,9 @@ dmypy.json
 
 # pycharm
 .idea
+
+# logs
+logs
+
+# reports
+reports

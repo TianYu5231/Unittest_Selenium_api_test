@@ -20,15 +20,16 @@ console_log_color = {
     'CRITICAL': 'bold_red',
 }
 
-base_dir = os.path.dirname(os.getcwd())
+cur_path = os.path.dirname(os.path.abspath(__file__))
+base_dir = cur_path[:cur_path.find('Unittest_Selenium_api_test') + len('Unittest_Selenium_api_test')]
 
 
 class Logger(object):
-    def __init__(self, logger):
-        self.logger = logging.getLogger(logger)
+    def __init__(self):
+        self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
 
-        log_time = time.strftime('%Y%m%d_%H%M%S', time.localtime())
+        log_time = time.strftime('%Y-%m-%d_%H-%M-%S', time.localtime())
         log_path = os.path.join(base_dir, 'logs')
         log_name = os.path.join(log_path, '{}.log'.format(log_time))
         # 输出到日志文件
@@ -57,6 +58,9 @@ class Logger(object):
 
     def get_log(self):
         return self.logger
+
+
+log = Logger().get_log()
 
 
 if __name__ == '__main__':
