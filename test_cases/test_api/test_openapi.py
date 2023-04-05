@@ -7,11 +7,11 @@
 import unittest
 
 from interfaces.open_api import OpenApi
+from framework.asserts import *
 
 
 class TestOpenApi(unittest.TestCase):
 
-    @unittest.skip
     def test_get_images_type(self):
         """
         校验type是否正确
@@ -19,12 +19,12 @@ class TestOpenApi(unittest.TestCase):
         """
         for i_type in ['animal', 'beauty', 'car', 'comic', 'food', 'game', 'movie', 'person', 'phone', 'scenery']:
             result = OpenApi().get_images(i_type)
-            assert result.status_code == 200
+            assert result.status_code == 200, log.error(f'{result.status_code} != 200')
             json_res = result.json()
-            assert json_res['message'] == '成功!'
+            assert json_res['message'] == '成功!', log.error(f"{json_res['message']} != '成功!'")
             image_list = json_res['result']['list']
             for img in image_list:
-                assert img['type'] == i_type
+                assert img['type'] == i_type, log.error(f"{img['type']} != {i_type}")
 
     def test_get_images_page(self):
         """
@@ -33,10 +33,9 @@ class TestOpenApi(unittest.TestCase):
         """
         result = OpenApi().get_images(i_type='animal', page=-1, size=10)
         json_result = result.json()
-        print(result.status_code)
-        assert result.status_code == 200
-        assert json_result['code'] == 400
-        assert json_result['message'] == 'page必须大于或等于0'
+        assert result.status_code == 200, log.error(f'{result.status_code} != 200')
+        assert json_result['code'], log.error(f"{json_result['code']} != 400")
+        assert json_result['message'] == 'page必须大于或等于0', log.error(f"{json_result['message']} != 'page必须大于或等于0'")
 
     def test_get_images_size(self):
         """
@@ -45,12 +44,12 @@ class TestOpenApi(unittest.TestCase):
         """
         result = OpenApi().get_images(i_type='animal', page=0, size=-1)
         json_result = result.json()
-        assert result.status_code == 200
-        assert json_result['code'] == 400
-        assert json_result['message'] == 'size必须大于或等于1'
+        assert result.status_code == 200, log.error(f'{result.status_code} != 200')
+        assert json_result['code'] == 400, log.error(f"{json_result['code']} != 400")
+        assert json_result['message'] == 'size必须大于或等于1', log.error(f"{json_result['message']} != 'size必须大于或等于1'")
 
         s_res = OpenApi().get_images(i_type='animal', page=0, size=20)
         j_result = s_res.json()
-        assert result.status_code == 200
-        assert len(j_result['result']['list']) == 20
+        assert result.status_code == 200, log.error(f'{result.status_code} != 200')
+        assert len(j_result['result']['list']) == 20, log.error(f"{len(j_result['result']['list'])} != 200")
 

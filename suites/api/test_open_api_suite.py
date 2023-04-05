@@ -5,6 +5,7 @@
 # @Date: 2023/4/5 10:25
 # @SoftWare: PyCharm
 import unittest
+from framework.gobal_v import *
 
 from config import commons
 from test_cases.test_api.test_openapi import TestOpenApi
