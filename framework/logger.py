@@ -6,12 +6,12 @@
 # @SoftWare: PyCharm
 import logging
 
-# console 日志颜色
 import os.path
 import time
 
 import colorlog
 
+# console 日志颜色
 console_log_color = {
     'DEBUG': 'white',
     'INFO': 'green',
