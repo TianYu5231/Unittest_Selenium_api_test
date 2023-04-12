@@ -48,20 +48,19 @@ class Logger(object):
             self.logger.addHandler(file_handler)
             self.logger.addHandler(console_handler)
 
+        file_handler.close()
+        console_handler.close()
+
     @property
     def file_fmt(self):
-        return '[%(asctime)s] %(filename)s -> line:%(lineno)d [%(levelname)s]: %(message)s'
+        return '[%(asctime)s] %(filename)s(%(funcName)s) -> line:%(lineno)d [%(levelname)s]: %(message)s'
 
     @property
     def console_fmt(self):
-        return '%(log_color)s[%(asctime)s] %(filename)s -> line:%(lineno)d [%(levelname)s]: %(message)s'
+        return '%(log_color)s[%(asctime)s] %(filename)s(%(funcName)s) -> line:%(lineno)d [%(levelname)s]: %(message)s'
 
     def get_log(self):
         return self.logger
 
 
 log = Logger().get_log()
-
-
-if __name__ == '__main__':
-    print(os.path.dirname(os.getcwd()))

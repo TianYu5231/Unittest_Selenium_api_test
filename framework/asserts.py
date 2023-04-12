@@ -5,7 +5,7 @@
 # @Date: 2023/4/5 11:17
 # @SoftWare: PyCharm
 
-# 暂时不使用该封装 assert
+
 from framework.logger import log
 
 
@@ -24,6 +24,7 @@ def assert_equal(arg1, arg2, msg=None):
             log.error('{} != {}, msg={}'.format(arg1, arg2, msg))
         else:
             log.error('{} != {}'.format(arg1, arg2))
+        return False
 
 
 def assert_in(arg1, arg2, msg=None):
