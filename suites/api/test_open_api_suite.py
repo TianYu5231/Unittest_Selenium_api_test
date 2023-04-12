@@ -10,7 +10,6 @@ from framework.gobal_v import *
 from config import commons
 from test_cases.test_api.test_openapi import TestOpenApi
 
-cm = commons.Common()
 
 suite = unittest.TestSuite(unittest.TestLoader().loadTestsFromTestCase(TestOpenApi))
-cm.get_html_report(suite, title='OpenApi 测试报告')
+commons.get_html_report(suite, title='OpenApi 测试报告')
