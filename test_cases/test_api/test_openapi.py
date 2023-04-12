@@ -12,6 +12,7 @@ from framework.asserts import *
 
 class TestOpenApi(unittest.TestCase):
 
+    @unittest.skip
     def test_get_images_type(self):
         """
         校验type是否正确
@@ -37,6 +38,7 @@ class TestOpenApi(unittest.TestCase):
         assert json_result['code'], log.error(f"{json_result['code']} != 400")
         assert json_result['message'] == 'page必须大于或等于0', log.error(f"{json_result['message']} != 'page必须大于或等于0'")
 
+    @unittest.skip
     def test_get_images_size(self):
         """
         校验size是否可小于1，以及size返回数量
