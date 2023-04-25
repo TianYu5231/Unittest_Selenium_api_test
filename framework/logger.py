@@ -29,8 +29,12 @@ class Logger(object):
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
 
-        log_time = time.strftime('%Y-%m-%d_%H-%M-%S', time.localtime())
-        log_path = os.path.join(base_dir, 'logs')
+        current_time = time.localtime()
+        log_time = time.strftime('%Y-%m-%d_%H-%M-%S', current_time)
+        date_file = time.strftime('%Y-%m-%d', current_time)
+        log_path = os.path.join(base_dir, 'logs', date_file)
+        if not os.path.exists(log_path):
+            os.makedirs(log_path)
         log_name = os.path.join(log_path, '{}.log'.format(log_time))
         # 输出到日志文件
         file_handler = logging.FileHandler(log_name)
