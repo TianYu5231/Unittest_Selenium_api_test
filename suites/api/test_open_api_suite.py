@@ -5,12 +5,12 @@
 # @Date: 2023/4/5 10:25
 # @SoftWare: PyCharm
 import sys
+sys.path.append('../..')
 import unittest
 
 from config import commons
 from test_cases.test_api.test_openapi import TestOpenApi
 
-sys.path.append('../..')
 
 suite = unittest.TestSuite(unittest.TestLoader().loadTestsFromTestCase(TestOpenApi))
 commons.get_html_report(suite, title='OpenApi 测试报告')
