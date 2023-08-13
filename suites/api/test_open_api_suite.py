@@ -4,8 +4,10 @@
 # @File: test_open_api_suite.py
 # @Date: 2023/4/5 10:25
 # @SoftWare: PyCharm
+import os.path
 import sys
-sys.path.append('../..')
+root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(root_path)
 import unittest
 
 from config import commons
